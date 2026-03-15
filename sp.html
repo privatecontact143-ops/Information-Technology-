@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SP Teach Tutorials</title>
+  <style>
+    :root {
+      --bg: #0b1020;
+      --bg-soft: #121933;
+      --card: #171f3d;
+      --text: #eaf0ff;
+      --muted: #b9c5ee;
+      --accent: #6ea8fe;
+      --accent-2: #8b5cf6;
+      --border: rgba(255,255,255,0.08);
+      --shadow: 0 18px 45px rgba(0, 0, 0, 0.28);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: linear-gradient(180deg, var(--bg) 0%, #0f1731 100%);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .container {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(11, 16, 32, 0.86);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 0;
+      gap: 16px;
+    }
+
+    .brand {
+      font-size: 1.2rem;
+      font-weight: 800;
+      letter-spacing: 0.3px;
+    }
+
+    .brand span { color: var(--accent); }
+
+    .nav-links {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .hero {
+      padding: 72px 0 48px;
+      text-align: center;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 8px 14px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: rgba(255,255,255,0.04);
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-bottom: 18px;
+    }
+
+    .hero h1 {
+      margin: 0;
+      font-size: clamp(2rem, 5vw, 3.8rem);
+      line-height: 1.1;
+    }
+
+    .hero p {
+      max-width: 760px;
+      margin: 18px auto 0;
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 26px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 18px;
+      border-radius: 12px;
+      font-weight: 700;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: white;
+      box-shadow: var(--shadow);
+    }
+
+    .btn-secondary {
+      border: 1px solid var(--border);
+      color: var(--text);
+      background: rgba(255,255,255,0.04);
+    }
+
+    section {
+      padding: 28px 0 20px;
+    }
+
+    .section-title {
+      margin-bottom: 18px;
+    }
+
+    .section-title h2 {
+      margin: 0 0 8px;
+      font-size: 1.7rem;
+    }
+
+    .section-title p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 22px;
+      box-shadow: var(--shadow);
+    }
+
+    .card h3 {
+      margin-top: 0;
+      margin-bottom: 10px;
+      font-size: 1.2rem;
+    }
+
+    .card p {
+      color: var(--muted);
+      margin-top: 0;
+    }
+
+    .topic-list {
+      list-style: none;
+      padding: 0;
+      margin: 14px 0 0;
+    }
+
+    .topic-list li {
+      padding: 8px 0;
+      border-top: 1px solid rgba(255,255,255,0.07);
+      font-size: 0.95rem;
+      color: #d7e1ff;
+    }
+
+    .topic-list li:first-child { border-top: 0; }
+
+    .subject-strip {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 16px;
+      margin-top: 16px;
+    }
+
+    .subject-pill {
+      border: 1px solid var(--border);
+      background: var(--bg-soft);
+      border-radius: 16px;
+      padding: 16px;
+      text-align: center;
+      font-weight: 700;
+    }
+
+    .cta {
+      margin: 26px 0 10px;
+      text-align: center;
+      padding: 28px;
+      border-radius: 24px;
+      background: linear-gradient(135deg, rgba(110,168,254,0.14), rgba(139,92,246,0.16));
+      border: 1px solid var(--border);
+    }
+
+    footer {
+      margin-top: 30px;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      padding: 24px 0 40px;
+      text-align: center;
+    }
+
+    @media (max-width: 640px) {
+      .nav { flex-direction: column; align-items: flex-start; }
+      .hero { padding-top: 56px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="brand">SP <span>Teach</span></div>
+      <nav class="nav-links">
+        <a href="#home">Home</a>
+        <a href="#tutorials">Tutorials</a>
+        <a href="#courses">Courses</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="home">
+    <section class="hero container">
+      <div class="badge">Welcome to SP  Teach Tutorials</div>
+      <h1>Learn Coding and CHSE Topics with Confidence</h1>
+      <p>
+        A clean tutorial platform for students and beginners. Explore web development,
+        Java basics, networking, internet concepts, security, database topics, and exam-ready notes.
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#tutorials">Start Learning</a>
+        <a class="btn btn-secondary" href="#courses">Browse Subjects</a>
+      </div>
+    </section>
+
+    <section id="tutorials">
+      <div class="container">
+        <div class="section-title">
+          <h2>Popular Tutorials</h2>
+          <p>Inspired by the structure of a tutorial portal, but rewritten as a fresh site for your own brand.</p>
+        </div>
+
+        <div class="grid">
+          <article class="card">
+            <h3>CSS Tutorial</h3>
+            <p>Understand selectors, box model, display, positioning, flexbox, grid, and responsive layouts.</p>
+            <ul class="topic-list">
+              <li>What is CSS?</li>
+              <li>CSS Syntax and Selectors</li>
+              <li>Box Model</li>
+              <li>Flexbox and Grid</li>
+              <li>Responsive Design Basics</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <h3>Java Tutorial</h3>
+            <p>Build core programming skills with variables, loops, methods, arrays, OOP, exceptions, and collections.</p>
+            <ul class="topic-list">
+              <li>Introduction to Java</li>
+              <li>Variables and Data Types</li>
+              <li>Conditions and Loops</li>
+              <li>Classes and Objects</li>
+              <li>Exception Handling</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <h3>Networking Tutorial</h3>
+            <p>Learn communication basics, topology, transmission media, devices, models, and common exam questions.</p>
+            <ul class="topic-list">
+              <li>What is Networking?</li>
+              <li>Communication Model</li>
+              <li>Network Topologies</li>
+              <li>Types of Networks</li>
+              <li>Important Questions and MCQs</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <h3>Internet & Applications</h3>
+            <p>Cover internet history, protocols, IP address, domain names, search engines, email, and mobile communication.</p>
+            <ul class="topic-list">
+              <li>What is Internet?</li>
+              <li>Internet Protocols</li>
+              <li>IP Address and Domain Name</li>
+              <li>Web Page and Search Engine</li>
+              <li>Email and Communication Services</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <h3>Network Security</h3>
+            <p>Study cyber crime, cookies, denial of service, digital signature, IT Act, and security mechanisms.</p>
+            <ul class="topic-list">
+              <li>Security Basics</li>
+              <li>Types of Cyber Crime</li>
+              <li>Cookies and Tracking</li>
+              <li>Digital Signature</li>
+              <li>Cyber Law Essentials</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <h3>RDBMS Tutorial</h3>
+            <p>Get comfortable with DBMS, relational models, keys, SQL commands, functions, joins, and transactions.</p>
+            <ul class="topic-list">
+              <li>DBMS and RDBMS Basics</li>
+              <li>ER Model and Keys</li>
+              <li>SQL Commands</li>
+              <li>Functions and Clauses</li>
+              <li>Joins and Transactions</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="courses">
+      <div class="container">
+        <div class="section-title">
+          <h2>Subjects You Can Add</h2>
+          <p>Use these sections to organize tutorials the way you want on RK Teach.</p>
+        </div>
+        <div class="subject-strip">
+          <div class="subject-pill">HTML</div>
+          <div class="subject-pill">CSS</div>
+          <div class="subject-pill">JavaScript</div>
+          <div class="subject-pill">Java</div>
+          <div class="subject-pill">Networking</div>
+          <div class="subject-pill">Internet</div>
+          <div class="subject-pill">Security</div>
+          <div class="subject-pill">RDBMS</div>
+          <div class="subject-pill">IT Application</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container">
+        <div class="cta">
+          <h2>About SP Teach</h2>
+          <p>
+            SP Teach is a student-focused tutorial website concept built for coding learners and CHSE exam preparation.
+            You can expand this into a full platform with lesson pages, notes, MCQs, and chapter-wise study material.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="section-title">
+          <h2>Contact Section</h2>
+          <p>Add your mobile number, email, YouTube channel, or social links here.</p>
+        </div>
+        <div class="grid">
+          <div class="card">
+            <h3>Email</h3>
+            <p>subhampraddhan44116@gmail.com</p>
+          </div>
+          <div class="card">
+            <h3>YouTube</h3>
+            <p>SP Teach Official</p>
+          </div>
+          <div class="card">
+            <h3>Support</h3>
+            <p>Available for tutorial updates, notes, and student guidance.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      © 2026 SP Teach Tutorials. All rights reserved.
+    </div>
+  </footer>
+</body>
+</html>
